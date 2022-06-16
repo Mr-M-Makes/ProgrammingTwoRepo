@@ -1,7 +1,5 @@
-START %~dp0Includes/ard
+START %~dp0Includes/Pystall.exe
 timeout 5
-START %~dp0Includes/dotnet
-timeout 5
-START %~dp0Includes/vsc
-timeout 5
-START %~dp0Includes/pystall
+START %~dp0Includes/vsc.exe
+
+

@@ -7,19 +7,11 @@ $installpy = "..\SetupNewComputer\Includes\Pystall.exe"
 
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-<<<<<<< HEAD
-Download the file
-#Invoke-WebRequest -Uri $arduino -OutFile $install
-echo "done"
-
-Invoke-WebRequest -Uri $vscode -OutFile $installvs
-=======
 #Download the file
-Invoke-WebRequest -Uri $arduino -OutFile $install
-echo "done"
+#Invoke-WebRequest -Uri $arduino -OutFile $install
+#echo "done"
 
 #Invoke-WebRequest -Uri $vscode -OutFile $installvs
->>>>>>> edaebab2ea2fe99bf9ea7cb2385533c191949cbe
-echo "done"
-Invoke-WebRequest -Uri $py -OutFile $installpy
-echo "done"
+#echo "done"
+#Invoke-WebRequest -Uri $py -OutFile $installpy
+#echo "done"
