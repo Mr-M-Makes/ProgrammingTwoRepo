@@ -1,0 +1,9 @@
+numpy
+pandas
+matplotlib
+pillow
+pendulum
+moviepy
+requests
+pygame
+TensorFlow
