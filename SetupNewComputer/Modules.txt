@@ -7,3 +7,4 @@ moviepy
 requests
 pygame
 TensorFlow
+esptool
