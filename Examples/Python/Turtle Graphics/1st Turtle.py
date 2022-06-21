@@ -7,7 +7,7 @@ y=0
 angle=90
 dist = 150
 increment = 30
-while y < 10:    
+while y < 11:    
     while x < 4:
 
         t.forward(dist)
@@ -19,8 +19,4 @@ while y < 10:
     dist -= increment
     increment / 10
     
-turtle.Screen().exitonclick() 
-
-
-
 turtle.Screen().exitonclick() 
