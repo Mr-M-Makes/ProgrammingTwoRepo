@@ -9,7 +9,7 @@ def new_object():
     Trait2 = input("What is your 2nd trait? ")
     Trait3 = input("What is your 3rd trait? ")
     print("\n")
-    Objects[Trait1] = new_class_example(Trait1, Trait2, Trait3)
+    Objects[Trait1] = MyObj_class_example(Trait1, Trait2, Trait3)
 
 def list_Trait1():
     Trait1List = Objects.keys()
@@ -49,12 +49,16 @@ def Menu():
         else:
             print("Please choose a number.\n")
 
-class new_class_example:  
+class MyObj_class_example:  
         
     def __init__(self, first, second, third):  
         self.f = first  
         self.s = second
         self.th = third
+        
+    
+    def __str__(self):
+        return str(self.values)
   
     def say_hi(self):  
         print('Hello, my 1st trait is', self.f, "\n") 
