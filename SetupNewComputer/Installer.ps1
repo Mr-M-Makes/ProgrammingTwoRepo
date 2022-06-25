@@ -4,7 +4,7 @@ $mu = "https://github.com/mu-editor/mu/releases/download/v1.1.1/MuEditor-win64-1
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 #Download the file
-Invoke-WebRequest -Uri $arduino -OutFile "..\SetupNewComputer\Includes\mu.exe"
+Invoke-WebRequest -Uri $mu -OutFile "..\SetupNewComputer\Includes\mu.msi"
 choco install arduino -y
 choco install nodejs -y
 choco install vcredist140  -y
