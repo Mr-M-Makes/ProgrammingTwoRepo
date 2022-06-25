@@ -4,7 +4,7 @@ $arduino = "https://downloads.arduino.cc/arduino-1.8.19-windows.exe"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 #Download the file
-Invoke-WebRequest -Uri $arduino -OutFile "..\SetupNewComputer\Includes\ard.exe"
+#Invoke-WebRequest -Uri $arduino -OutFile "..\SetupNewComputer\Includes\ard.exe"
 
 $proc = Start-Process "..\SetupNewComputer\Deprecated_1st_run_in_Cmd.bat" -NoNewWindow -PassThru
 
