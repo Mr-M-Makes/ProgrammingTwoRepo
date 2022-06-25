@@ -1,12 +1,12 @@
 
 #$UserPath = "$($env:USERPROFILE)\Desktop\InstallArduino.exe"
-$arduino = "https://downloads.arduino.cc/arduino-1.8.19-windows.exe"
+$mu = "https://github.com/mu-editor/mu/releases/download/v1.1.1/MuEditor-win64-1.1.1.msi"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 #Download the file
-#Invoke-WebRequest -Uri $arduino -OutFile "..\SetupNewComputer\Includes\ard.exe"
+Invoke-WebRequest -Uri $arduino -OutFile "..\SetupNewComputer\Includes\mu.exe"
 
-$proc = Start-Process "..\SetupNewComputer\Deprecated_1st_run_in_Cmd.bat" -NoNewWindow -PassThru
+
 
 # $proc = Start-Process "..\SetupNewComputer\Includes\Pystall.exe" -NoNewWindow -PassThru
 # $proc.WaitForExit()
