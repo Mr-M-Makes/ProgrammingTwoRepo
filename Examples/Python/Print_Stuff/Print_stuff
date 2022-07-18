@@ -1,0 +1,5 @@
+import Other
+
+Other.main()
+Other.print_var(42)
+Other.print_input()
