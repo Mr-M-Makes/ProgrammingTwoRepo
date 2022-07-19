@@ -9,3 +9,6 @@ pygame
 TensorFlow
 esptool
 pyinstaller
+scikit-learn
+keras
+PyTorch
