@@ -1,10 +1,10 @@
 
 import MyObjInDict as f 
-import 
+import my
 
 shape = input("input a shape")
-shape1 = m.Shape(shape)
-m.print_shape(shape1)
+shape1 = my_modules.Shape(shape)
+shape1.print_shape()
 
 
 
