@@ -12,3 +12,4 @@ pyinstaller
 scikit-learn
 keras
 PyTorch
+inquirer
