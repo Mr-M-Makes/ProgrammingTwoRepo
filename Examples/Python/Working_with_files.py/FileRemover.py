@@ -8,7 +8,7 @@ def deleteFiles(name):
     for f in files:
         if ".txt" in f:
             os.remove(f)
-    
+    #
 
 if __name__ == "__main__":
     main()
