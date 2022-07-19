@@ -1,32 +1,47 @@
-
-
-from unicodedata import name
-
-
+from turtle import Turtle, color
 class Shape:
+    general_type = "Polygon"    #Class Variable
+    def __init__(self, name):
+        self.name = name
+
+
+class Rectangle:
     """This is a shape class. You put a shape name here."""
     
-    general_type = "Polygon"    #Class Variable
+    general_type = "4 sided shape"    #Class Variable
 
-    def __init__(self, shape) -> None:
-        self.name = shape 
+    def __init__(self,name, length, width) -> None:
+        self.length = length
+        self.width = width
+        self.name = name
+        self.t = Turtle()
+        self.t.speed(0)
+        pass
 
     def print_shape(self):
         print(self.name)
 
-    def num_anlges(self):
+    def ask_shape(self):    
+        pass
 
- 
-        
-def ask_shape():    
-    questions = [
-    inquirer.List('Chosen_Shape',
-                    message="What Shape do you have?",
-                    choices=['Square', 'Circle', 'Triangle', 'Pentagon', 'Hexagon'],
-                ),
-    ]
-    answers = inquirer.prompt(questions)
-    print answers["size"]
+    def draw_shape(self):
+
+        pass
+
+
+
+class Square(Rectangle):
+    def __init__(self, name, length) -> None:
+        super().__init__(name, length, length)
+
+    def draw_shape(self):
+        self.t.pendown()
+        for side in range (4):    
+            self.t.forward(self.length)
+            self.t.right(90)
+       
+
+
 
 def main():
     pass
