@@ -1,9 +1,13 @@
 
 import MyObjInDict as f 
-import my
+import my_modules as m
 
-shape = input("input a shape")
-shape1 = my_modules.Shape(shape)
+
+
+
+m.ask_shapes
+shape = input("Input a shape = ")
+shape1 = m.Shape(shape)
 shape1.print_shape()
 
 
