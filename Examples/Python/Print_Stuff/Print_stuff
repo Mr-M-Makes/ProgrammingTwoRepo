@@ -1,5 +1,5 @@
-import Other
+import Print_Library
 
-Other.main()
-Other.print_var(42)
-Other.print_input()
+Print_Library.main()
+Print_Library.print_var(42)
+Print_Library.print_input()
