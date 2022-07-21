@@ -57,7 +57,7 @@ def main():
         print('Image Couldn\'t be retreived') # Error code
 
     #Set current Working Directory as path and concatenate filename
-    path = os.getcwd() + "\\" + filename
+    path = os.getcwd() + "\\Images\\" + filename
     
     #print(path)    #debug Check
     
