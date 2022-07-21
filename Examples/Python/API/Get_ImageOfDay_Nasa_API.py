@@ -5,10 +5,17 @@ import json
 import shutil # to save it locally
 import os
 
+def get_key():
+    text = open("Keys\\nasa.txt", "r")
+    key = text.read()
+    text.close()
+    return key
+
+
 def main():
     #Set Up Api Call
     url = "https://api.nasa.gov/planetary/apod"
-    api_key = "DEMO_KEY"
+    api_key = get_key()
     query_params = { "api_key": api_key, "count":1, "hd":True }
 
     #Make API Call
