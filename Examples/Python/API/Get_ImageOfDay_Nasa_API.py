@@ -47,9 +47,9 @@ def main():
     if r.status_code == 200:
         # Set decode_content value to True, otherwise the downloaded image file's size will be zero.
         r.raw.decode_content = True
-        
+        rename = "Images\\" + filename
         # Open a local file with wb ( write binary ) permission.
-        with open(filename,'wb') as f:
+        with open(rename,'wb') as f:
             shutil.copyfileobj(r.raw, f)
             
         print('Image sucessfully Downloaded: ',filename)
@@ -57,7 +57,7 @@ def main():
         print('Image Couldn\'t be retreived') # Error code
 
     #Set current Working Directory as path and concatenate filename
-    path = os.getcwd() + "\\Images\\" + filename
+    path = os.getcwd() + "\\" + rename
     
     #print(path)    #debug Check
     
