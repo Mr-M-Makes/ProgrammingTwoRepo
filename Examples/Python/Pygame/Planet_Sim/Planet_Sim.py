@@ -10,6 +10,13 @@ class Color:
 
 class Constants:
     AU = 149597870700
+    G = 6.6743e-11
+    TIMESTEP = 3600*24
+    
+    WIDTH = 600
+    HEIGHT = 600
+    EDGE = 4
+    SCALE = WIDTH / 2 / EDGE / AU
 
 class SolarObject:
     def __init__(self, id, date, radius, color, mass, sun=False) -> None:
@@ -24,17 +31,35 @@ class SolarObject:
 
         self.vectors = self.get_starting_vectors(id, date)
         self.x = self.vector["x"][-1]*Constants.AU
+        self.y = self.vectors["y"][-1] * Constants.AU # meters
+        self.x_vel = self.vectors["vx"][-1] * Constants.AU / 24 / 3600 # m/s
+        self.y_vel = self.vectors["vy"][-1] * Constants.AU / 24 / 3600 # m/s
 
     def get_starting_vectors(self, id, date):
         tbd_time = Time(date).jd1
         obj = Horizons(id=id, location="@Sun", epochs = tbd_time)
         return obj.vectors()
 
-    def 
+    def draw(self, win):
+        x = self.x * Constants.SCALE + Constants.WIDTH / 2
+        y = self.y * Constants.SCALE + Constants.HEIGHT / 2
+
+        if len(self.orbit) > 2:
+            updated_points = []
+            for point in self.orbit:
+                point_x, point_y = point
+                point_x = point_x * Constants.SCALE + Constants.WIDTH / 2
+                point_y = point_y * Constants.SCALE + Constants.HEIGHT / 2
+                updated_points.append((point_x, point_y))
+
+            pygame.draw.lines(win, self.color, False, updated_points, 1)
+
+        pygame.draw.circle(win, self.color, (x, y), self.radius / Constants.WIN_EDGE_FROM_SUN)
+
 
 def main():
     pg.init()
-    win = pg.display.set_mode((600,600))
+    win = pg.display.set_mode((Constants.WIDTH, Constants.HEIGHT))
     pg.display.set_caption("Planet Sim")
     font = pg.font.SysFont("monospace", 40)
     clock = pg.time.Clock()
