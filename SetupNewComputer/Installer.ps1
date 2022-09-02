@@ -24,4 +24,4 @@ choco install autodesk-fusion360 -y
 choco install thonny -y
 
 
-cat extensions.list |% { code --install-extension $_}
+Get-Content extensions.list |% { code --install-extension $_}

@@ -1,0 +1,1 @@
+Get-Content extensions.list |% { code --install-extension $_}
