@@ -7,6 +7,7 @@ class Color:
     Font = (200, 255, 255)
     Background = (0,0,0)
     Sun = (249,215,28)
+    Grey = (50,50,50)
 
 class Constants:
     AU = 149597870700
@@ -30,7 +31,7 @@ class SolarObject:
         self.distance_to_sun = 0
 
         self.vectors = self.get_starting_vectors(id, date)
-        self.x = self.vector["x"][-1]*Constants.AU
+        self.x = self.vectors["x"][-1]*Constants.AU
         self.y = self.vectors["y"][-1] * Constants.AU # meters
         self.x_vel = self.vectors["vx"][-1] * Constants.AU / 24 / 3600 # m/s
         self.y_vel = self.vectors["vy"][-1] * Constants.AU / 24 / 3600 # m/s
@@ -52,9 +53,9 @@ class SolarObject:
                 point_y = point_y * Constants.SCALE + Constants.HEIGHT / 2
                 updated_points.append((point_x, point_y))
 
-            pygame.draw.lines(win, self.color, False, updated_points, 1)
+            pg.draw.lines(win, self.color, False, updated_points, 1)
 
-        pygame.draw.circle(win, self.color, (x, y), self.radius / Constants.WIN_EDGE_FROM_SUN)
+        pg.draw.circle(win, self.color, (x, y), self.radius / Constants.EDGE)
 
 
 def main():
@@ -67,10 +68,12 @@ def main():
     elasped_time = 0
 
     sun = SolarObject("0", start_date, 30, Color.Sun, 1.98847*10**30, True)
+    Merc = SolarObject("1", start_date, 7, Color.Grey, 3.285*10**23, True)
 
+    objects = [sun,Merc]
     running = True
     while running:
-        clock.tick(2)
+        clock.tick(100)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
@@ -78,6 +81,10 @@ def main():
         elasped_time += 1
         label = font.render(f"Day: {elasped_time}", 1, Color.Font)
         win.blit(label, (10,10))
+        for o in objects:
+            o.draw(win)
+       # sun.draw(win)
+        #Merc.draw(win)
         pg.display.update()
 
 main()
