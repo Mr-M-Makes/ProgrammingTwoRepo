@@ -28,20 +28,6 @@ def main():
     ball_last_pos = ball_rect.topleft
 
 
-    brick_prefab = pg.image.load("Examples/Python/Pygame/Basic_Practice/images/brick.png")
-    brick_prefab = brick_prefab.convert_alpha()
-    brick_rect = brick_prefab.get_rect()
-    bricks = []
-    brick_padding = 15
-    brick_rows = 5
-    brick_columns = screen.get_width() // (brick_rect.width + brick_padding)
-    brick_edge_padding = (screen.get_width() - (brick_rect.width + brick_padding) * brick_columns + brick_padding) // 2
-
-    for y in range(brick_rows):
-        brick_y = y * (brick_rect.height + brick_padding)
-        for x in range(brick_columns):
-            brick_x = x * (brick_rect.width + brick_padding) + brick_edge_padding
-            bricks.append((brick_x, brick_y, brick_x + brick_rect.width, brick_y + brick_rect.height))
 
 
     clock = pg.time.Clock()
@@ -51,8 +37,6 @@ def main():
         dt = clock.tick(50)
         screen.fill((0, 0, 0))
 
-        for brick in bricks:
-            screen.blit(brick_prefab, brick)
 
         screen.blit(paddle, paddle_rect)
         screen.blit(ball, ball_rect)
@@ -84,27 +68,7 @@ def main():
                 ball_rect.top = paddle_rect.top - ball_rect.height
                 continue
 
-            delete_brick = -1
-            for i,brick in enumerate(bricks):
-                if collide_with_brick(brick, ball_rect):
-                    delete_brick = i
-                    if ball_rect.right > brick[0] and ball_rect.top < brick[3] and ball_last_pos.right < brick[0]:
-                        ball_motion[0] *= -1
-                    elif ball_rect.right > brick[0] and ball_rect.bottom > brick[1] and ball_last_pos.right < brick[0]:
-                        ball_motion[0] *= -1
-                    elif ball_rect.left < brick[2] and ball_rect.top < brick[3] and ball_last_pos.left > brick[2]:
-                        ball_motion[0] *= -1
-                    elif ball_rect.left < brick[2] and ball_rect.bottom > brick[1] and ball_last_pos.left > brick[2]:
-                        ball_motion[0] *= -1
-                    else:
-                        ball_motion[1] *= -1
-
-                    break
-
-
-            if delete_brick > -1:
-                bricks.pop(delete_brick)
-                delete_brick = -1
+    
 
             # Ball collision with sides
             if ball_rect.left < 0:
@@ -128,10 +92,7 @@ def main():
     pg.quit()
 
 
-def collide_with_brick(brick, ball):
-    if (brick[0] < ball.left < brick[2] or brick[0] < ball.right < brick[2]) and (brick[3] > ball.bottom > brick[1] or brick[3] > ball.top > brick[1]):
-        return True
-    return False
+
 
 
 def collide_with_paddle(ball, paddle):
