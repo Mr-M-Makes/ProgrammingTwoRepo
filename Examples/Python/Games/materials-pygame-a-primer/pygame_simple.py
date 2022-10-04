@@ -4,7 +4,15 @@
 import pygame
 
 pygame.init()
-
+from pygame.locals import (
+    K_UP,
+    K_DOWN,
+    K_LEFT,
+    K_RIGHT,
+    K_ESCAPE,
+    KEYDOWN,
+    QUIT,
+)
 # Setup the window we'll use for drawing
 screen = pygame.display.set_mode([500, 500])
 
@@ -16,7 +24,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+        if event.type == K
     # Fill the background with white
     screen.fill((255, 255, 255))
 

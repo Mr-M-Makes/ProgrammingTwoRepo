@@ -1,5 +1,5 @@
 
-def main():
+def printer():
     print("Tacos are yummy" , "Bring me some please" , sep ="\n")
 
 def print_var(num):

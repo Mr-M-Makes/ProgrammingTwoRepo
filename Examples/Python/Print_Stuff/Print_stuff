@@ -1,5 +1,0 @@
-import Print_Library
-
-Print_Library.main()
-Print_Library.print_var(42)
-Print_Library.print_input()

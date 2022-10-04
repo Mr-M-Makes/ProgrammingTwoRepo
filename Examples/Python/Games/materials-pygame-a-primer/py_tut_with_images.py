@@ -1,9 +1,10 @@
 # Import the pygame module
 import pygame
 import time
+import turtle
 # Import random for random numbers
 import random
-
+superman = "super.png"
 # Import pygame.locals for easier access to key coordinates
 # Updated to conform to flake8 and black standards
 # from pygame.locals import *
@@ -24,6 +25,7 @@ pygame.mixer.init()
 pygame.init()
 
 font = pygame.font.SysFont("Helvetica", 24)
+
 dead_font = pygame.font.SysFont("ariel", 72)
 # Define constants for the screen width and height
 
@@ -38,7 +40,7 @@ SCREEN_HEIGHT = size[0][1]-100
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("super.png").convert_alpha()
+        self.surf = pygame.image.load(superman).convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.surf.get_rect()
 
@@ -143,7 +145,7 @@ all_sprites.add(player)
 # Load and play our background music
 # Sound source: http://ccmixter.org/files/Apoxode/59262
 # License: https://creativecommons.org/licenses/by/3.0/
-pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
+pygame.mixer.music.load("AIR_FORCE.mp3")
 pygame.mixer.music.play(loops=-1)
 
 # Load all our sound files
@@ -163,6 +165,8 @@ score = 0
 lives = 3
 slow = 1
 fast=40
+max_enemies = 20
+count=0
 # Our main loop
 while running:
     # Look at every event in the queue
@@ -180,9 +184,10 @@ while running:
         # Should we add a new enemy?
         elif event.type == ADDENEMY:
             # Create the new enemy, and add it to our sprite groups
-            new_enemy = Enemy()
-            enemies.add(new_enemy)
-            all_sprites.add(new_enemy)
+            if len(enemies)< max_enemies:
+                new_enemy = Enemy()
+                enemies.add(new_enemy)
+                all_sprites.add(new_enemy)
 
         # Should we add a new cloud?
         elif event.type == ADDCLOUD:
@@ -198,7 +203,7 @@ while running:
     # Update the position of our enemies and clouds
     enemies.update()
     clouds.update()
-
+    
     # Fill the screen with sky blue
     screen.fill((135, 206, 250))
 
@@ -208,23 +213,24 @@ while running:
     
     #lives
     if lives >0:
-        life1 = pygame.image.load("super.png").convert_alpha()
+        life1 = pygame.image.load(superman).convert_alpha()
         
         life1_rect = life1.get_rect()
         screen.blit(life1, (105,5))
     if lives >1:
-        life2 = pygame.image.load("super.png").convert_alpha()
+        life2 = pygame.image.load(superman).convert_alpha()
         life2.set_colorkey((0, 0, 0), RLEACCEL)
         life2_rect = life2.get_rect()
         screen.blit(life2, (205,5))
     if lives >2:
-        life3 = pygame.image.load("super.png").convert_alpha()
+        life3 = pygame.image.load(superman).convert_alpha()
         life3.set_colorkey((255, 255, 255), RLEACCEL)
         life3_rect = life3.get_rect()
         screen.blit(life3, (305,5))
 
     #score
-    score_display = (("Score: ") + str(score))
+    score += 1
+    score_display = (("Score: ") + str(score) + "Enemies:"+ str(len(enemies)) )
     img = font.render(score_display, True, (100,100, 255))
     rect = img.get_rect()
     pygame.draw.rect(img,(150,200,255),rect,1)
@@ -268,8 +274,18 @@ while running:
             screen.blit(GO, (((SCREEN_WIDTH/2)-35),((SCREEN_HEIGHT/2)-20)))
             pygame.display.flip()
             time.sleep(2)
-            running = False
-
+            bob = turtle.Screen()
+            bob.setup(1,1)
+            done = bob.textinput(f"You scored {score}", "Type QUIT to close the game, anything else to play again")
+            if done == "QUIT":
+                running = False
+                bob.bye()
+                continue
+            lives = 3
+            score = 0    
+            bob.bye()
+            for enemy in enemies:
+                enemy.kill()
         # Stop the loop
         #running = False
         screen.fill((135, 206, 250))
@@ -283,6 +299,12 @@ while running:
     # Flip everything to the display
     pygame.display.flip()
     score += 1
+    count += 1
+    if count == 5:
+        if max_enemies<40:
+
+            max_enemies+=1
+            count =0
     # Ensure we maintain a 30 frames per second rate
     clock.tick(30)
 
