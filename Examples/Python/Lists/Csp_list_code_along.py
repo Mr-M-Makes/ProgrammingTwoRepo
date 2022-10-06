@@ -1,3 +1,9 @@
+num_of_a = ord("a")
+num_of_b = ord("b")
+dist_btwn_a2b = num_of_b - num_of_a
+
+
+
 
 #Declare and Initialize an empty list
 Listy_mcListface = []
